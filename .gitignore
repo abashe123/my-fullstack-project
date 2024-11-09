@@ -1,0 +1,7 @@
+# Laravel-specific files to ignore
+/laravel-backend/vendor/
+/laravel-backend/storage/
+
+# Angular-specific files to ignore
+/angular-frontend/node_modules/
+/angular-frontend/dist/
