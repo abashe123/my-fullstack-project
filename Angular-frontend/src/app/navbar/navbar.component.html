@@ -1,0 +1,42 @@
+<!-- app-navbar.component.html -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <!-- <a class="navbar-brand" href="javascript:void(0);" routerLink="/home">SoftMed LTD</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarContent">
+    <ul class="navbar-nav mr-auto">
+      <ng-container *ngIf="loggedIn; else notAuthenticated">
+        <li class="nav-item">
+          <a href="javascript:void(0);" routerLink="/dashboard" class="nav-link">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a href="javascript:void(0);" routerLink="/home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0);" (click)="logout($event)">Logout</a>
+        </li>
+        
+      </ng-container>
+
+      <ng-template #notAuthenticated>
+        <li class="nav-item">
+          <a href="javascript:void(0);" routerLink="/home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="javascript:void(0);" routerLink="/register" class="nav-link">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0);" routerLink="/login">Login</a>
+        </li>
+      </ng-template>
+    </ul>
+
+    <!-- Display email on the right side -->
+    <div class="ml-auto text-light d-flex align-items-center">
+      <span *ngIf="useremail">{{ useremail }}</span>
+    </div>
+  </div>
+</nav>

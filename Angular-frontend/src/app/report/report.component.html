@@ -1,0 +1,89 @@
+<!-- Button trigger modal -->
+<div class="container mt-5">
+  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#reportIssueModal">
+    Report Issue
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="reportIssueModal" tabindex="-1" role="dialog" aria-labelledby="reportIssueModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reportIssueModalLabel">Report Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Specimen Form Card -->
+        <form (ngSubmit)="submitReport()">
+          <div class="form-row mb-4">
+            <div class="form-group col-md-6">
+              <label for="handledBy">Handled by</label>
+              <input type="text" class="form-control" id="handledBy" [(ngModel)]="reportData.handledBy" name="handledBy" placeholder="Enter handler's name" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="receivedBy">Received by</label>
+              <input type="text" class="form-control" id="receivedBy" [(ngModel)]="reportData.receivedBy" name="receivedBy" placeholder="Enter receiver's name" required>
+            </div>
+          </div>
+
+          <!-- Issue Form -->
+          <div class="mb-4">
+            <h5>Issue Report</h5>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="issueReason">Reason</label>
+                <select class="form-control" id="issueReason" [(ngModel)]="reportData.issueReason" name="issueReason" required>
+                  <option value="">Select Reason</option>
+                  <option value="Sample not placed in proper fixative">Sample not placed in proper fixative</option>
+                  <option value="Sample not placed in fixative">Sample not placed in fixative</option>
+                  <option value="Sample received without form">Sample received without form</option>
+                  <option value="Form received without sample">Form received without sample</option>
+                  <option value="Demographic data not filled in form">Demographic data not filled in form</option>
+                  <option value="Inadequate sample">Inadequate sample</option>
+                  <option value="Contaminated sample">Contaminated sample</option>
+                  <option value="Unlabeled or mislabeled sample">Unlabeled or mislabeled sample</option>
+                  <option value="Necrotic sample">Necrotic sample</option>
+                  <option value="Cytology placed in a wrong container">Cytology placed in a wrong container</option>
+                  <!-- Add other options here -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Elaborate Other -->
+            <div class="form-group">
+              <label for="elaborateOther">Elaborate “Other”</label>
+              <textarea class="form-control" id="elaborateOther" [(ngModel)]="reportData.elaborateOther" name="elaborateOther" rows="4" placeholder="Elaborate on the 'Other' reason"></textarea>
+            </div>
+
+            <!-- Action Taken -->
+            <div class="form-group">
+              <label for="actionTaken">Action taken</label>
+              <textarea class="form-control" id="actionTaken" [(ngModel)]="reportData.actionTaken" name="actionTaken" rows="4" placeholder="Describe the action taken"></textarea>
+            </div>
+
+            <!-- Additional Details -->
+            <div class="form-group">
+              <label for="reportedTo">Reported to</label>
+              <input type="text" class="form-control" id="reportedTo" [(ngModel)]="reportData.reportedTo" name="reportedTo" placeholder="Enter who the issue was reported to">
+            </div>
+            <div class="form-group">
+              <label for="reportDate">Date reported</label>
+              <input type="date" class="form-control" id="reportDate" [(ngModel)]="reportData.reportDate" name="reportDate">
+            </div>
+            <!-- <div class="form-group">
+              <label for="feedback">Feedback from the sender</label>
+              <textarea class="form-control" id="feedback" [(ngModel)]="reportData.feedback" name="feedback" rows="4" placeholder="Provide feedback received"></textarea>
+            </div> -->
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Issue</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

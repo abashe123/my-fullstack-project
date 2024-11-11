@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<section class="login-block">
+  <div class="container">
+    <div class="row">
+      <div class="col login-sec">
+        <h2 class="text-center">Login Now</h2>
+        <form class="login-form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+
+          <div class="alert alert-danger" *ngIf="error">
+            {{error}}
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1" class="text-uppercase">Email</label>
+            <input type="email" class="form-control" name="email" id="" placeholder="email" [(ngModel)]="formdata.email" #email="ngModel" required>
+            <span class="text-danger" *ngIf="f.submitted && email.errors?.['required']">
+              Email is required.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+            <input class="form-control" type="password" name="password" placeholder="password" id="" [(ngModel)]="formdata.password" #password="ngModel" required>
+            <span class="text-danger" *ngIf="f.submitted && password.errors?.['required']">
+              Password is required.
+            </span>
+          </div>
+
+          <div class="form-group text-center" *ngIf="loading">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+
+          <input type="submit" class="btn btn-login float-right" [disabled]="loading" value="Login">
+
+          <div class="clearfix"></div>
+          <div class="form-group">
+            Create new account? Please <a routerLink="/register">Register</a>
+          </div>
+          <div class="form-group">
+            <!-- <a routerLink="/forgot-password">Forgot Password?</a> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

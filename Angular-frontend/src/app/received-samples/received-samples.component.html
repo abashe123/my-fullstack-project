@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+
+<div class="row mb-4 shadow-sm">
+  <div class="w-20">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="w-80 mt-5 pr-5">
+    <div class="search-container">
+      <input type="text" placeholder="Search by patient name or sender name..." (input)="onSearch($event)">
+      <button class="search-button">Search</button>
+    </div>
+
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Patient Name</th>
+            <th>Sender Name</th>
+            <th>Status</th>
+            <th>Date Received</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sample of filteredSamples; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ sample.name }}</td>
+            <td>{{ sample.userName }}</td>
+            <td [ngClass]="getStatusClass(sample.status)">{{ sample.status }}</td>
+            <td>{{ sample.receivedDate | date: 'short' }}</td>
+            <td>
+              <!-- File upload input is visible only if the sample status is not 'Completed' -->
+              <input *ngIf="sample.status !== 'Completed'" type="file" (change)="onFileSelected($event, sample.id)" />
+              <!-- Mark as Completed button is visible only if the sample status is not 'Completed' and a file has been uploaded -->
+              <button *ngIf="sample.status !== 'Completed' && sample.fileUploaded" 
+                      class="btn btn-success btn-sm" 
+                      (click)="markAsCompleted(sample.id, sample.pdf_file_path)">
+                Mark as Completed
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

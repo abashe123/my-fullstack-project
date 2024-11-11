@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+
+<div class="row mb-4 shadow-sm">
+  <div class="w-20">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="w-80 mt-5 pr-5">
+
+    <!-- Patient Details -->
+    <div *ngIf="selectedPatient" class="mb-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>Patient Details</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>Name:</strong> {{ selectedPatient.name }}</p>
+          <p><strong>Age:</strong> {{ selectedPatient.age }}</p>
+          <p><strong>Gender:</strong> {{ selectedPatient.gender }}</p>
+          <p><strong>Sample Type:</strong> {{ selectedPatient.sampletype }}</p>
+          <p *ngIf="selectedPatient.clinicalhistory"><strong>Clinical History:</strong> {{ selectedPatient.clinicalhistory }}</p>
+          <p><strong>Diagnosis:</strong> {{ selectedPatient.diagnosis }}</p>
+          <p><strong>Hospital:</strong> {{ selectedPatient.user.name }}</p>
+          <p><strong>Sender's Name:</strong> {{ selectedPatient.senderName }}</p>
+          <p><strong>Date of Sample Transportation:</strong> {{ selectedPatient.sampleTransportDate | date }}</p>
+          
+          <!-- Report Issue Button -->
+          <app-report></app-report>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="mb-4">
+      <input 
+        type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchTerm" 
+        (input)="filterPatients()">
+    </div>
+
+    <!-- Patient Table -->
+    <div class="mt-4">
+      <h4 class="mb-3">Patients List</h4>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Sample Type</th>
+            <th scope="col">Diagnosis</th>
+            <th scope="col">Hospital</th>
+            <th scope="col">Date of Transportation</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of filteredPatients; let i = index" (click)="selectPatient(patient)">
+            <td>{{ i + 1 }}</td>
+            <td>{{ patient.name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.gender }}</td>
+            <td>{{ patient.sampletype }}</td>
+            <td>{{ patient.diagnosis }}</td>
+            <td>{{ patient.user.name }}</td>
+            <td>{{ patient.sampleTransportDate | date }}</td>
+            <td>
+              <button class="btn btn-success btn-sm" (click)="markAsReceived(patient)">Mark as Received</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

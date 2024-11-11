@@ -1,0 +1,85 @@
+<!-- Specimen Form Card -->
+ <app-navbar></app-navbar>
+
+<div class="row mb-4 shadow-sm">
+  <div class="w-20">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="w-80 mt-5 pr-5">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title mb-0">Specimen Form</h4>
+    </div>
+
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <div class="form-group mt-3">
+            <label for="hospitalName">Hospital Name</label>
+            <input type="text" class="form-control" id="hospitalName" name="hospitalName" [(ngModel)]="hospitalName" readonly>
+          </div>
+        </div>
+      </div>
+
+      <!-- Patient Information Component -->
+      <div class="row">
+        <div class="col-md-6">
+          <app-patient></app-patient>
+        </div>
+      </div>
+
+      <div *ngIf="successMessageVisible" class="alert alert-success mt-3">
+        Sent successfully
+      </div>
+    </div>
+
+    <!-- Patient Table -->
+    <div class="mt-4">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th> <!-- Number Column -->
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Sample Type</th>
+            <th scope="col">Clinical History</th>
+            <th scope="col">Diagnosis</th>
+            <th scope="col">Sender's Name</th>
+            <th scope="col">Date of Transportation</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of patients; let i = index">
+            <td>{{ i + 1 }}</td> <!-- Display row number -->
+            <td>{{ patient.name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.gender }}</td>
+            <td>{{ patient.sampletype }}</td>
+            <td>{{ patient.clinicalhistory }}</td>
+            <td>{{ patient.diagnosis }}</td>
+            <td>{{ patient.senderName }}</td>
+            <td>{{ patient.sampleTransportDate | date:'short' }}</td>
+            <td>
+              <!-- Conditionally display buttons based on patient status -->
+              <button *ngIf="!patient.submitted" class="btn btn-sm btn-warning" (click)="editPatient(patient.id)" aria-label="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button *ngIf="!patient.submitted" class="btn btn-sm btn-danger" (click)="deletePatient(patient.id)" aria-label="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+              <button class="btn btn-lg" [ngClass]="{ 'btn-primary': !patient.submitted, 'btn-secondary': patient.submitted }" 
+              (click)="sendPatientData(patient.id)" 
+              [disabled]="patient.submitted" 
+              aria-label="Submit">
+              {{ patient.submitted ? 'Submitted' : 'Submit' }}
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

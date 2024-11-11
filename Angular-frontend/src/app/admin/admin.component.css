@@ -1,0 +1,37 @@
+/* Optional: Sidebar styling */
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    width: 250px;
+    overflow-y: auto;
+  }
+  
+  .sidebar .header-box h1 {
+    font-size: 1.25rem;
+  }
+  
+  .sidebar ul li a {
+    color: #adb5bd;
+    font-size: 1rem;
+  }
+  
+  .sidebar ul li a:hover {
+    background: #495057;
+    color: white;
+  }
+  
+  .content {
+    margin-left: 250px;
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .content {
+      margin-left: 0;
+    }
+  }
+  

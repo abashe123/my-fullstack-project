@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<div class="row mb-4 shadow-sm">
+  <div class="w-20">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="w-80 mt-5 pr-5">
+    <div class="card shadow-sm">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="card-title mb-0"><strong>Order Status</strong></h4>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Patient Name</th>
+                <th>Estimated TAT</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Result</th> <!-- Add Result column -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let sample of orderSamples; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ sample.name }}</td>
+                <td>{{ sample.estimatedTAT }}</td>
+                <td>{{ sample.date | date: 'short' }}</td>
+                <td>{{ sample.status }}</td>
+                <td>
+                  <!-- Show download link only if the status is 'Completed' and file path exists -->
+                  <a *ngIf="sample.status === 'Completed' && sample.pdf_file_path" 
+                     [href]="getFileUrl(sample.pdf_file_path)" 
+                     target="_blank">
+                    <i class="fa fa-download"></i> Download Report
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

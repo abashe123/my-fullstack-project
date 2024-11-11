@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+
+<div class="row mb-4 shadow-sm">
+    <div class="w-20">
+        <app-sidenav></app-sidenav>
+    </div>
+
+    <div class="w-80 mt-5 pr-5">
+        <div class="container">
+            <div class="dashboard-container">
+                <h3>Dashboard</h3>
+                <div class="row">
+                    <!-- Total Patients Card -->
+                    <div class="col-md-3">
+                        <div class="card text-white bg-primary mb-3">
+                            <div class="card-header">Total Patients</div>
+                            <div class="card-body">
+                                <h5 class="card-title large-number">{{ patientCount }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Samples Received Card -->
+                    <div class="col-md-3">
+                        <div class="card text-white bg-success mb-3">
+                            <div class="card-header">Samples Received</div>
+                            <div class="card-body">
+                                <h5 class="card-title large-number">{{ samplesReceived }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more cards here if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

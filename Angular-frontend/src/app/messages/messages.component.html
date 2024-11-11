@@ -1,0 +1,34 @@
+<!-- Navbar Component -->
+<app-navbar></app-navbar>
+
+    <!-- Messages Form -->
+    <div class="row mb-4 shadow-sm">
+        <div class="w-20">
+          <app-sidenav></app-sidenav>
+        </div>
+        
+      <div class="w-80 mt-5 pr-5">
+        <div class="d-flex justify-content-between align-items-center bg-secondary text-white">
+          <h4 class="p-1">Send a Message</h4>
+        </div> 
+
+        <div>
+          <form (ngSubmit)="sendMessage()" #messageForm="ngForm">
+            <div class="form-group mt-3">
+              <label for="userName">Hospital Name</label>
+              <input type="text" class="form-control" id="userName" [(ngModel)]="message.name" name="name" required>
+            </div>
+            <div class="form-group mt-3">
+              <label for="userEmail">Email</label>
+              <input type="email" class="form-control" id="userEmail" [(ngModel)]="message.email" name="email" required>
+            </div>
+            <div class="form-group mt-3">
+              <label for="userMessage">Your Message</label>
+              <textarea class="form-control" id="userMessage" [(ngModel)]="message.content" name="content" rows="4" required></textarea>
+            </div>
+            <button class="btn btn-success">Send</button> <!-- Send button opposite patient info -->
+          </form>
+        </div>
+      </div>
+    </div>
+

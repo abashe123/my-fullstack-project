@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+
+<div class="row mb-4 shadow-sm">
+    <div class="w-20">
+      <app-sidenav></app-sidenav>
+    </div>
+  
+    <div class="w-80 mt-5 pr-5">
+        <div class="container">
+            <h2 class="mb-4">Registered Users</h2>
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light">
+                <tr>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Registered Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.created_at | date:'short' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          
+
+    </div>    
+
+  

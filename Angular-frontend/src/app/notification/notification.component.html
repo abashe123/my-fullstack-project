@@ -1,0 +1,33 @@
+<!-- notifications.component.html -->
+
+<app-navbar></app-navbar>
+
+<div class="row mb-4 shadow-sm">
+  <div class="w-20">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="w-80 mt-5 pr-5">
+    <div class="container mt-5">
+      <h2 class="page-title">Notifications</h2>
+      <div class="notification-container">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Message</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let notification of notifications; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ notification.data.message }}</td>
+              <td>{{ notification.created_at | date: 'short' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
