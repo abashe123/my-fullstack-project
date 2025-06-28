@@ -23,7 +23,6 @@ export class LoginComponent {
   handlerError: any;
 
 
-
   constructor(private RandomService: RandomService, private token: TokenService, private router: Router, private Auth: AuthService,
     private toastr: ToastrService
   ){}
