@@ -331,6 +331,13 @@ class PatientController extends Controller
         ]);
     }
 
+
+    // public function sampleSubmittedToday()
+    // {
+    //     $todayCount = Patient::whereDate('created_at', Carbon::today())->count();
+    //     return response()->json(['samples_submitted_today' =>$todayCount]);
+    // }
+
 }
 
 
